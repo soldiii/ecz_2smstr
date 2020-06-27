@@ -51,12 +51,17 @@ bool Compare_Lists(List* l1, List* l2) // функция, которая про�
 
 	if (l1 == NULL && l2 == NULL)
 		return 1;
+	if (l1 != NULL && l2 == NULL)
+		return 0;
+	if (l1 == NULL && l2 != NULL)
+		return 0;
 
 	while (l1->next != NULL && l2->next != NULL && l1->value == l2->value)
 	{
 		l1 = l1->next;
 		l2 = l2->next;
 	}
+
 	if ((l1->next == l2->next) && (l1->value == l2->value)) {
 
 		return 1;
