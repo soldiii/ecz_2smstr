@@ -8,7 +8,7 @@ struct List
 	int value;
 	List* next;
 
-	List(int val = 0, List * p = NULL) //конструктор
+	List(int val = 0, List * p = NULL) //ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
 	{
 		value = val;
 		next = p;
@@ -18,10 +18,10 @@ struct List
 List* Add_last(int n, List* head)
 {
 	List* q = new List(n), * p = head;
-	// если список пуст
+	// ГҐГ±Г«ГЁ Г±ГЇГЁГ±Г®ГЄ ГЇГіГ±ГІ
 	if (head == NULL)
 		return q;
-	// «идем в конец списка»
+	// В«ГЁГ¤ГҐГ¬ Гў ГЄГ®Г­ГҐГ¶ Г±ГЇГЁГ±ГЄГ В»
 	while (p->next != NULL)
 		p = p->next;
 	p->next = q;
@@ -46,7 +46,7 @@ List* Enter_List()
 
 	return list;
 }
-bool Compare_Lists(List* l1, List* l2) // функция, которая проверяет равенство списков L1 и L2.
+bool Compare_Lists(List* l1, List* l2) // С„СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РїСЂРѕРІРµСЂСЏРµС‚ СЂР°РІРµРЅСЃС‚РІРѕ СЃРїРёСЃРєРѕРІ L1 Рё L2.
 {
 
 	if (l1 == NULL && l2 == NULL)
@@ -70,17 +70,17 @@ bool Compare_Lists(List* l1, List* l2) // функция, которая проверяет равенство с
 
 		setlocale(LC_ALL, "Russian");
 
-		printf("Ввод L1:\n");
+		printf("Г‚ГўГ®Г¤ L1:\n");
 		l1 = Enter_List();
 
-		printf("Ввод L2:\n");
+		printf("Г‚ГўГ®Г¤ L2:\n");
 		l2 = Enter_List();
 
 		if (Compare_Lists(l1, l2)) {
-			printf("списки равны");
+			printf("Г±ГЇГЁГ±ГЄГЁ Г°Г ГўГ­Г»");
 		}
 		else {
-			printf("списки не равны");
+			printf("Г±ГЇГЁГ±ГЄГЁ Г­ГҐ Г°Г ГўГ­Г»");
 		}
 		return 0;
 
