@@ -1,0 +1,132 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <locale.h>
+
+struct List
+{
+	int value;
+	List* next;
+
+	List(int val = 0, List * p = NULL) //конструктор
+	{
+		value = val;
+		next = p;
+	}
+};
+
+//включение элемента в конец
+List* Add_last(int n, List* head)
+{
+	List* q = new List(n), * p = head;
+	// если список пуст
+	if (head == NULL)
+		return q;
+	// «идем в конец списка»
+	while (p->next != NULL)
+		p = p->next;
+	p->next = q;
+	return head;
+}
+
+List* Enter_List()
+{
+	List* list = NULL;
+	char* input = (char*)calloc(25, sizeof(char));
+
+	fgets(input, 25, stdin);
+	input[strlen(input) - 1] = '\0';
+
+	while (input[0] != '\0')
+	{
+		list = Add_last(atoi(input), list);
+
+		fgets(input, 25, stdin);
+		input[strlen(input) - 1] = '\0';
+	}
+
+	return list;
+}
+
+void Insert_List(int E, List* l, List* l1)
+{
+	List* element = l, // текущий элемент в l
+		* temp = NULL;   // элемент, идущий после E
+	int count = 1;      // количество элементов
+
+	// если первый или второй список пуст
+	if (l == NULL || l1 == NULL)
+		printf("один или оба списки пусты");
+
+	// поиск элемента, содержащий E
+	while (element->value != E && element->next != NULL)
+	{
+
+		element = element->next;
+		count++;
+	}
+
+	// если элемент не найден
+	if (element->value != E && element->next == NULL)
+		printf("элемент не найден");
+
+	temp = element->next; // запоминаем элемент идущий после E
+	element->next = l1;   // добавляем в l l1
+
+	// идем до конца измененного списка
+	while (element->next != NULL)
+	{
+		element = element->next;
+	}
+	element->next = temp; // добавление к измененному списку элемент, идущий после E
+	while (element->next != NULL)
+	{
+		element = element->next;
+	}
+	while (element->next != NULL && element->value != E)
+	{
+		element = element->next;
+		if (element->next->value == E) {
+			element = element->next;
+		}
+		while (element->next != NULL && element->value != E) {
+			element = element->next;
+			if (element->value == E) {
+				temp = element;
+				element = element->next;
+				delete temp;
+
+}
+void Print_list(List* head) // Печать списка
+{
+	List* p = head;
+	puts("\n PRINT LIST");
+	if (p == NULL) puts("List empty!");
+	else while (p != NULL)
+	{
+		printf("%s\n", p->value);
+		p = p->next;
+	}
+}
+
+int main()
+{
+	List* l, * l1;
+	int E;
+
+	setlocale(LC_ALL, "Russian");
+
+	printf("Ввод L:\n");
+	l = Enter_List();
+
+	printf("Ввод L1:\n");
+	l1 = Enter_List();
+
+	printf("Ввод числа E: ");
+	scanf("%d", &E);
+
+	Print_list(l);
+
+	return 0;
+}
